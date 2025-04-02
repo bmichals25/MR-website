@@ -17,7 +17,7 @@ export default function Home() {
       setIsSubmitting(false);
       setSubmitted(true);
       setEmail("");
-    }, 1000); // Reduced timeout for better responsiveness
+    }, 500); // Reduced timeout for better responsiveness
   };
 
   return (
@@ -25,23 +25,20 @@ export default function Home() {
       {/* Background boxes effect */}
       <Boxes className="absolute inset-0" />
       
-      {/* Overlay for better text readability - reduced opacity and removed pointer-events-none */}
-      <div className="absolute inset-0 w-full h-full bg-slate-900/30 z-10 [mask-image:radial-gradient(transparent,white)]" />
-      
-      {/* Main content - simplified animations */}
-      <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
+      {/* Main content - centered and contained to preserve background interactivity */}
+      <div className="relative z-20 text-center px-4 max-w-xl mx-auto">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
           The Future of Music Creation is{" "}
           <span className="relative inline-block">
             <span className="relative z-10 text-sky-400 font-extrabold">Here</span>
             {/* Simplified glow effect */}
-            <span className="absolute inset-0 blur-xl bg-sky-400 opacity-30 z-0"></span>
+            <span className="absolute inset-0 blur-xl bg-sky-400 opacity-40 z-0"></span>
           </span>
         </h1>
         
-        {/* Waitlist signup section - simplified */}
-        <div className="mt-10 bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20 shadow-xl">
-          <h2 className="text-xl md:text-2xl font-medium text-white mb-6">Join the waitlist</h2>
+        {/* Waitlist signup section */}
+        <div className="mt-10 bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 shadow-xl">
+          <h2 className="text-xl md:text-2xl font-medium text-white mb-4">Join the waitlist</h2>
           
           {submitted ? (
             <div className="text-green-400 py-4 text-lg font-medium">
@@ -60,7 +57,7 @@ export default function Home() {
               />
               <button 
                 type="submit" 
-                className="bg-sky-500 hover:bg-sky-400 text-white font-medium px-6 py-3 rounded-md shadow-lg hover:shadow-sky-500/40 transition-colors"
+                className="bg-sky-500 hover:bg-sky-400 text-white font-medium px-6 py-3 rounded-md shadow-md"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Processing...' : 'Join Now'}

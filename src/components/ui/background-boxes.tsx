@@ -1,17 +1,14 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import { cn } from "@/lib/utils";
 
+// Simplified component without motion animations for better performance
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  // Reduce the number of rows and columns for better performance
-  const rows = new Array(75).fill(1);
-  const cols = new Array(50).fill(1);
-  const [randomBoxes, setRandomBoxes] = useState<Record<string, string>>({});
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  // Reduced number of boxes for better performance
+  const rows = new Array(50).fill(1);
+  const cols = new Array(30).fill(1);
   
-  // Using direct color values instead of CSS variables
+  // Direct color values
   const colors = [
     "rgb(125 211 252)", // sky-300
     "rgb(249 168 212)", // pink-300
@@ -28,68 +25,38 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     return colors[Math.floor(Math.random() * colors.length)];
   };
 
-  // Optimized random glowing boxes effect with fewer updates
-  useEffect(() => {
-    // Only light up a few boxes at a time (3 instead of potentially many)
-    const updateRandomBoxes = () => {
-      const newBoxes: Record<string, string> = {};
-      
-      // Limit to just 3 random boxes for better performance
-      for (let i = 0; i < 3; i++) {
-        const randomRow = Math.floor(Math.random() * rows.length);
-        const randomCol = Math.floor(Math.random() * cols.length);
-        const key = `${randomRow}-${randomCol}`;
-        newBoxes[key] = getRandomColor();
-      }
-      
-      setRandomBoxes(newBoxes);
-      
-      // Clear after a delay
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      timeoutRef.current = setTimeout(() => {
-        setRandomBoxes({});
-      }, 800);
-    };
-    
-    // Run less frequently - every 3 seconds instead of 2
-    intervalRef.current = setInterval(updateRandomBoxes, 3000);
-    
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, []);
-
   return (
     <div
       style={{
         transform: `translate(-20%,-20%) skewX(-48deg) skewY(14deg) scale(1.5) rotate(0deg) translateZ(0)`,
       }}
       className={cn(
-        "fixed inset-0 flex w-screen h-screen z-0 pointer-events-none",
+        "fixed inset-0 flex w-screen h-screen z-0",
         className
       )}
       {...rest}
     >
       {rows.map((_, i) => (
-        <motion.div
+        <div
           key={`row` + i}
           className="w-16 h-8 border-l border-slate-700 relative"
         >
           {cols.map((_, j) => {
-            // Only render every other column for better performance
+            // Skip every other box for better performance
             if (j % 2 !== 0 && i % 2 !== 0) return null;
             
-            const key = `${i}-${j}`;
-            const hasColor = randomBoxes[key];
-            
             return (
-              <motion.div
+              <div
                 key={`col` + j}
-                style={{
-                  backgroundColor: hasColor ? randomBoxes[key] : undefined,
+                onMouseEnter={(e) => {
+                  // Direct DOM manipulation for instant feedback
+                  e.currentTarget.style.backgroundColor = getRandomColor();
                 }}
-                className="w-16 h-8 border-r border-t border-slate-700 relative"
+                onMouseLeave={(e) => {
+                  // Clear color on leave
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+                className="w-16 h-8 border-r border-t border-slate-700 relative transition-none"
               >
                 {j % 4 === 0 && i % 4 === 0 ? (
                   <svg
@@ -107,13 +74,14 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                     />
                   </svg>
                 ) : null}
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       ))}
     </div>
   );
 };
 
+// Use memo to prevent unnecessary re-renders
 export const Boxes = React.memo(BoxesCore); 
