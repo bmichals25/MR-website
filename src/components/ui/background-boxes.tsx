@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// Simplified component without motion animations for better performance
 export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  // Reduced number of boxes for better performance
-  const rows = new Array(50).fill(1);
-  const cols = new Array(30).fill(1);
+  const rows = new Array(150).fill(1);
+  const cols = new Array(100).fill(1);
   
-  // Direct color values
+  // Using direct color values instead of CSS variables
   const colors = [
     "rgb(125 211 252)", // sky-300
     "rgb(249 168 212)", // pink-300
@@ -37,51 +36,44 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
       {...rest}
     >
       {rows.map((_, i) => (
-        <div
+        <motion.div
           key={`row` + i}
           className="w-16 h-8 border-l border-slate-700 relative"
         >
-          {cols.map((_, j) => {
-            // Skip every other box for better performance
-            if (j % 2 !== 0 && i % 2 !== 0) return null;
-            
-            return (
-              <div
-                key={`col` + j}
-                onMouseEnter={(e) => {
-                  // Direct DOM manipulation for instant feedback
-                  e.currentTarget.style.backgroundColor = getRandomColor();
-                }}
-                onMouseLeave={(e) => {
-                  // Clear color on leave
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }}
-                className="w-16 h-8 border-r border-t border-slate-700 relative transition-none"
-              >
-                {j % 4 === 0 && i % 4 === 0 ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="absolute h-6 w-10 -top-[14px] -left-[22px] text-slate-700 stroke-[1px]"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 6v12m6-6H6"
-                    />
-                  </svg>
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
+          {cols.map((_, j) => (
+            <motion.div
+              whileHover={{
+                backgroundColor: getRandomColor(),
+                transition: { duration: 0 },
+              }}
+              animate={{
+                transition: { duration: 2 },
+              }}
+              key={`col` + j}
+              className="w-16 h-8 border-r border-t border-slate-700 relative"
+            >
+              {j % 2 === 0 && i % 2 === 0 ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="absolute h-6 w-10 -top-[14px] -left-[22px] text-slate-700 stroke-[1px] pointer-events-none"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v12m6-6H6"
+                  />
+                </svg>
+              ) : null}
+            </motion.div>
+          ))}
+        </motion.div>
       ))}
     </div>
   );
 };
 
-// Use memo to prevent unnecessary re-renders
 export const Boxes = React.memo(BoxesCore); 
