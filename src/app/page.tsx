@@ -172,14 +172,14 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto w-[95%] sm:w-auto"
             ref={modalRef}
           >
-            <div className="relative bg-black/80 backdrop-blur-md p-10 rounded-3xl max-w-md w-full shadow-2xl border border-indigo-500/40 overflow-y-auto max-h-[90vh]">
+            <div className="relative bg-black/80 backdrop-blur-md p-6 sm:p-10 rounded-3xl max-w-md w-full shadow-2xl border border-indigo-500/40 overflow-y-auto max-h-[90vh]">
               {/* Close button */}
               <button
                 onClick={() => setShowWaitlist(false)}
-                className="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors z-10"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-gray-400 hover:text-white transition-colors z-10"
                 aria-label="Close"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -192,20 +192,20 @@ export default function Home() {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl opacity-20 blur-md -z-10"></div>
               
               {/* Form content */}
-              <div className="mb-6 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="mb-4 sm:mb-6 text-center">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-8 sm:w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-white mb-2 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">Join Our Waitlist</h2>
-                <p className="text-gray-300 text-sm">Be the first to experience the future of music creation in MuseRoom</p>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">Join Our Waitlist</h2>
+                <p className="text-xs sm:text-sm text-gray-300">Be the first to experience the future of music creation in MuseRoom</p>
               </div>
               
-              <form className="space-y-6" onSubmit={handleFormSubmit}>
-                <div className="space-y-4">
+              <form className="space-y-4 sm:space-y-6" onSubmit={handleFormSubmit}>
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-200 mb-2">
+                    <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">
                       Your name
                     </label>
                     <input
@@ -214,12 +214,12 @@ export default function Home() {
                       name="name"
                       placeholder="John Doe"
                       required
-                      className="w-full px-4 py-3 rounded-2xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-sm sm:text-base"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
+                    <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">
                       Email address
                     </label>
                     <input
@@ -228,12 +228,12 @@ export default function Home() {
                       name="email"
                       placeholder="you@example.com"
                       required
-                      className="w-full px-4 py-3 rounded-2xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-sm sm:text-base"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-200 mb-2">
+                    <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-gray-200 mb-1 sm:mb-2">
                       Phone number
                     </label>
                     <input
@@ -241,21 +241,21 @@ export default function Home() {
                       id="phone"
                       name="phone"
                       placeholder="(123) 456-7890"
-                      className="w-full px-4 py-3 rounded-2xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-sm sm:text-base"
                     />
                   </div>
                 </div>
                 
-                <div className="mt-6 pt-4 border-t border-gray-800">
-                  <p className="text-base font-medium text-white mb-3">Device ownership (optional)</p>
+                <div className="mt-4 pt-3 sm:mt-6 sm:pt-4 border-t border-gray-800">
+                  <p className="text-sm sm:text-base font-medium text-white mb-2 sm:mb-3">Device ownership (optional)</p>
                   
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
                     <label 
-                      className={`flex items-center justify-center text-sm ${
+                      className={`flex items-center justify-center text-xs sm:text-sm ${
                         metaQuestChecked 
                           ? 'bg-purple-900/30 border-purple-500' 
                           : 'bg-gray-900/70 hover:bg-gray-900 border-gray-800'
-                      } border rounded-xl p-3 cursor-pointer transition-all duration-200`}
+                      } border rounded-lg sm:rounded-xl p-2 sm:p-3 cursor-pointer transition-all duration-200`}
                     >
                       <input 
                         type="checkbox" 
@@ -264,14 +264,14 @@ export default function Home() {
                         checked={metaQuestChecked}
                         onChange={() => setMetaQuestChecked(!metaQuestChecked)}
                       />
-                      <div className="relative flex flex-col items-center gap-2">
-                        <span className={`h-6 w-6 rounded-full ${
+                      <div className="relative flex flex-col items-center gap-1 sm:gap-2">
+                        <span className={`h-5 w-5 sm:h-6 sm:w-6 rounded-full ${
                           metaQuestChecked 
                             ? 'bg-purple-600 scale-110' 
                             : 'bg-purple-600/20'
                         } flex items-center justify-center transition-all duration-200`}>
                           <svg 
-                            className={`h-4 w-4 ${
+                            className={`h-3 w-3 sm:h-4 sm:w-4 ${
                               metaQuestChecked 
                                 ? 'text-white scale-110' 
                                 : 'text-purple-500'
@@ -294,11 +294,11 @@ export default function Home() {
                     </label>
                     
                     <label 
-                      className={`flex items-center justify-center text-sm ${
+                      className={`flex items-center justify-center text-xs sm:text-sm ${
                         visionProChecked 
                           ? 'bg-pink-900/30 border-pink-500' 
                           : 'bg-gray-900/70 hover:bg-gray-900 border-gray-800'
-                      } border rounded-xl p-3 cursor-pointer transition-all duration-200`}
+                      } border rounded-lg sm:rounded-xl p-2 sm:p-3 cursor-pointer transition-all duration-200`}
                     >
                       <input 
                         type="checkbox" 
@@ -307,14 +307,14 @@ export default function Home() {
                         checked={visionProChecked}
                         onChange={() => setVisionProChecked(!visionProChecked)} 
                       />
-                      <div className="relative flex flex-col items-center gap-2">
-                        <span className={`h-6 w-6 rounded-full ${
+                      <div className="relative flex flex-col items-center gap-1 sm:gap-2">
+                        <span className={`h-5 w-5 sm:h-6 sm:w-6 rounded-full ${
                           visionProChecked 
                             ? 'bg-pink-600 scale-110' 
                             : 'bg-pink-600/20'
                         } flex items-center justify-center transition-all duration-200`}>
                           <svg 
-                            className={`h-4 w-4 ${
+                            className={`h-3 w-3 sm:h-4 sm:w-4 ${
                               visionProChecked 
                                 ? 'text-white scale-110' 
                                 : 'text-pink-500'
@@ -341,11 +341,11 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`relative w-full group rounded-2xl px-6 py-3.5 mt-6 text-lg font-medium text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'} transition-all duration-200 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30`}
+                  className={`relative w-full group rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-3.5 mt-4 sm:mt-6 text-base sm:text-lg font-medium text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:opacity-90'} transition-all duration-200 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30`}
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
