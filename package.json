@@ -2,9 +2,13 @@
   "name": "temp-project",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && cp -r public/* .next/",
+    "build": "node --version && next build && cp -r public/* .next/",
     "start": "next start",
     "lint": "next lint"
   },
