@@ -9,8 +9,10 @@
 [build.environment]
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
+  # Helps with Next.js 15 compatibility
+  NEXT_USE_NETLIFY_EDGE = "true"
 
-# Force-include environment variables at build time
+# Environment variables for the Notion API
 [build.environment.production]
   NOTION_API_KEY = "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"
   NOTION_DATABASE_ID = "1cac2c53a70a8033b8bdf2b914caf25a"
