@@ -4,7 +4,7 @@ import { addEntryToNotion, WaitlistEntry } from '@/lib/notion';
 export async function POST(request: NextRequest) {
   try {
     // Parse the request body
-    const { name, email, ownsMetaQuest, ownsVisionPro } = await request.json();
+    const { name, email, phone, ownsMetaQuest, ownsVisionPro } = await request.json();
     
     // Validate required fields
     if (!name || !email) {
@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
     const entry: WaitlistEntry = {
       name,
       email,
+      phone,
       ownsMetaQuest: ownsMetaQuest || false,
       ownsVisionPro: ownsVisionPro || false
     };

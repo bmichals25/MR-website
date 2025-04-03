@@ -62,6 +62,7 @@ export default function Home() {
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
     const ownsMetaQuest = formData.get('meta_quest') === 'on';
     const ownsVisionPro = formData.get('vision_pro') === 'on';
     
@@ -74,6 +75,7 @@ export default function Home() {
         body: JSON.stringify({
           name,
           email,
+          phone,
           ownsMetaQuest,
           ownsVisionPro
         }),

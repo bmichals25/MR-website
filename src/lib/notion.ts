@@ -12,6 +12,7 @@ export const databaseId = process.env.NOTION_DATABASE_ID;
 export interface WaitlistEntry {
   name: string;
   email: string;
+  phone?: string;
   ownsMetaQuest?: boolean;
   ownsVisionPro?: boolean;
 }
@@ -44,6 +45,9 @@ export async function addEntryToNotion(entry: WaitlistEntry) {
         },
         Email: {
           email: entry.email,
+        },
+        Phone: {
+          phone_number: entry.phone || '',
         },
         "Meta Quest": {
           checkbox: entry.ownsMetaQuest || false,
