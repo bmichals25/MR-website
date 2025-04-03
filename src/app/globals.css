@@ -161,3 +161,42 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* Night sky animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.stars1, .stars2, .stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,0.2) 2px, transparent 4px),
+    radial-gradient(white, rgba(255,255,255,0.15) 1px, transparent 2px),
+    radial-gradient(white, rgba(255,255,255,0.1) 2px, transparent 3px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 20px 40px, 50px 50px;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.stars2 {
+  background-size: 450px 450px, 250px 250px, 150px 150px;
+  background-position: 30px 60px, 70px 20px, 100px 90px;
+  animation-delay: 1s;
+  opacity: 0.6;
+}
+
+.stars3 {
+  background-size: 350px 350px, 200px 200px, 100px 100px;
+  background-position: 60px 90px, 120px 60px, 150px 10px;
+  animation-delay: 2s;
+  opacity: 0.8;
+}

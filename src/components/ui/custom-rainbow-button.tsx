@@ -12,8 +12,16 @@ export function CustomRainbowButton({
   children,
   className,
   size = "default",
+  onClick,
   ...props
 }: CustomRainbowButtonProps) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("CustomRainbowButton clicked");
+    if (onClick) {
+      onClick(e);
+    }
+  };
+
   return (
     <div className="relative group inline-block">
       {/* Rainbow border - outermost layer */}
@@ -32,6 +40,7 @@ export function CustomRainbowButton({
           size === "default" ? "px-6 py-3 text-base" : "px-8 py-4 text-lg",
           className
         )}
+        onClick={handleClick}
         {...props}
       >
         {children}

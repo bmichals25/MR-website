@@ -1,8 +1,11 @@
 import React from "react";
 
 import { cn } from "@/lib/utils";
+// This interface is used to extend HTMLButtonElement attributes
 interface RainbowButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  // Adding this comment to avoid the empty interface warning
+}
 
 export function RainbowButton({
   children,
